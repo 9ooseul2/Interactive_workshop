@@ -1,0 +1,22 @@
+.who-are-you-screen { position: fixed; z-index: 1; inset: 0; display: none; overflow: hidden; color: #f5f4ef; background: #050609; }
+.who-are-you-screen.active { display: block; }
+.who-are-you-stage, .who-are-you-video, .who-are-you-base-darkness, .who-are-you-render, .who-are-you-debug-drawing { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* The resting view intentionally bypasses WebGL: it is the browser's native,
+   aspect-correct camera image under a literal 60% black overlay. */
+.who-are-you-video { z-index: 0; display: block; object-fit: cover; transform: scaleX(-1); background: #050609; pointer-events: none; }
+.who-are-you-base-darkness { z-index: 1; pointer-events: none; background: rgba(0,0,0,.6); transition: opacity .15s ease; }
+.who-are-you-render { z-index: 2; display: block; opacity: 0; pointer-events: none; background: #050609; transition: opacity .12s ease; }
+.who-are-you-screen.peephole-visible .who-are-you-base-darkness { opacity: 0; }
+.who-are-you-screen.peephole-visible .who-are-you-render { opacity: 1; }
+.who-are-you-debug-drawing { z-index: 3; pointer-events: none; }
+.who-are-you-punctuation { position: absolute; z-index: 6; inset: 0; pointer-events: none; visibility: hidden; opacity: 0; transition: opacity .16s ease, visibility .16s ease; }
+.who-are-you-screen.punctuation-visible .who-are-you-punctuation { visibility: visible; opacity: 1; }
+.who-are-you-screen.peephole-visible .who-are-you-punctuation { -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 0 var(--peephole-radius, 40vh), #000 calc(var(--peephole-radius, 40vh) + 2px)); mask-image: radial-gradient(circle at 50% 50%, transparent 0 var(--peephole-radius, 40vh), #000 calc(var(--peephole-radius, 40vh) + 2px)); }
+.who-are-you-punctuation span { position: absolute; bottom: -12vh; display: grid; width: 1.1em; height: 1.1em; place-items: center; color: #d5f7ff; font: 900 1em/1 'Archivo Black', sans-serif; text-shadow: 0 0 12px rgba(167,235,255,.76), 0 4px 12px rgba(0,0,0,.36); animation: who-punctuation-rise var(--punctuation-duration) linear infinite; animation-delay: var(--punctuation-delay); }
+.who-are-you-punctuation span i { display: block; font-style: normal; animation: who-punctuation-wobble 1.45s ease-in-out infinite alternate; animation-delay: var(--punctuation-delay); }
+.who-are-you-reset { position: absolute; z-index: 5; right: 25px; top: 28px; display: grid; width: 33px; height: 33px; padding: 0; border: 1px solid rgba(255,255,255,.38); border-radius: 50%; place-items: center; color: rgba(255,255,255,.88); background: rgba(4,5,7,.35); font-size: 23px; line-height: 1; cursor: pointer; backdrop-filter: blur(8px); }
+.who-are-you-reset:hover { border-color: #fff; background: rgba(4,5,7,.72); }
+.who-are-you-reset:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+@keyframes who-punctuation-rise { from { transform: translate(-50%, 0) rotate(var(--punctuation-rotation)); } to { transform: translate(-50%, -128vh) rotate(var(--punctuation-rotation)); } }
+@keyframes who-punctuation-wobble { from { transform: translateX(-3px) rotate(-4deg); } to { transform: translateX(3px) rotate(4deg); } }
+@media (max-width: 700px) { .who-are-you-reset { top: 18px; right: 18px; } }
