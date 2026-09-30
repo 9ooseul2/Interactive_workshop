@@ -1,5 +1,6 @@
 import type { HandLandmarker } from '@mediapipe/tasks-vision'
 import './lemonade.css'
+import { publicAssetUrl } from './publicAssetUrl.ts'
 
 type Point = { x: number; y: number }
 type Landmark = Point & { z: number }
@@ -35,7 +36,7 @@ type JuiceStream = {
 
 const WASM_PATH = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.0.1/wasm'
 const MODEL_PATH = 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task'
-const LEMON_SOURCE = '/lemons/lemon.png'
+const LEMON_SOURCE = publicAssetUrl('lemons/lemon.png')
 
 export function setupLemonade(host: HTMLElement, isActive: () => boolean) {
   host.innerHTML = `

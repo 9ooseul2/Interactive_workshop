@@ -1,5 +1,6 @@
 import type { FaceLandmarker, HandLandmarker } from '@mediapipe/tasks-vision'
 import './frenchFries.css'
+import { publicAssetUrl } from './publicAssetUrl.ts'
 
 type Point = { x: number; y: number }
 type Landmark = Point & { z: number }
@@ -94,9 +95,9 @@ export function setupFrenchFries(host: HTMLElement, isActive: () => boolean) {
   const paperBagImage = new Image()
   const fryImage = new Image()
   const cartonImage = new Image()
-  paperBagImage.src = '/french-fries/paper-bag-cat-hat.png'
-  fryImage.src = '/french-fries/thick-fry.png'
-  cartonImage.src = '/french-fries/wide-fry-carton.png'
+  paperBagImage.src = publicAssetUrl('french-fries/paper-bag-cat-hat.png')
+  fryImage.src = publicAssetUrl('french-fries/thick-fry.png')
+  cartonImage.src = publicAssetUrl('french-fries/wide-fry-carton.png')
 
   let handTracker: HandLandmarker | null = null
   let handLoading: Promise<HandLandmarker> | null = null

@@ -1,5 +1,6 @@
 import type { FaceLandmarker, HandLandmarker } from '@mediapipe/tasks-vision'
 import './circe.css'
+import { publicAssetUrl } from './publicAssetUrl.ts'
 
 type Point = { x: number; y: number }
 type Landmark = Point & { z: number }
@@ -454,8 +455,8 @@ export function setupCirce(host: HTMLElement, isActive: () => boolean) {
   const holdLabel = hold.querySelector<HTMLElement>('span')!
   const foodSheet = new Image()
   const pigSheet = new Image()
-  foodSheet.src = '/circe/feast-sheet.png'
-  pigSheet.src = '/circe/pig-overlay.png'
+  foodSheet.src = publicAssetUrl('circe/feast-sheet.png')
+  pigSheet.src = publicAssetUrl('circe/pig-overlay.png')
 
   let handTracker: HandLandmarker | null = null
   let handLoading: Promise<HandLandmarker> | null = null

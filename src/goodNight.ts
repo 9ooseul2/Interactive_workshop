@@ -1,5 +1,6 @@
 import type { FaceLandmarker, HandLandmarker } from '@mediapipe/tasks-vision'
 import './goodNight.css'
+import { publicAssetUrl } from './publicAssetUrl.ts'
 
 type Point = { x: number; y: number }
 type Landmark = Point & { z: number }
@@ -21,7 +22,7 @@ export function setupGoodNight(host: HTMLElement, isActive: () => boolean) {
         <div class="goodnight-cord"><i></i></div>
         <button class="goodnight-pull" type="button" aria-label="램프 끈을 아래로 당기세요"><span></span></button>
       </div>
-      <div class="goodnight-blanket" aria-hidden="true"><img src="/goodnight/gingham-duvet.png" alt="" /></div>
+      <div class="goodnight-blanket" aria-hidden="true"><img src="${publicAssetUrl('goodnight/gingham-duvet.png')}" alt="" /></div>
       <div class="goodnight-vignette"></div>
     </div>
     <button class="goodnight-reset" type="button" aria-label="GoodNight 다시 시작">↻</button>
